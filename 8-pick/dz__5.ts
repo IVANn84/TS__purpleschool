@@ -8,17 +8,17 @@ const data = {
   scills: ['typeScript', 'javaScript'],
 };
 
-function pickObjectCase<T, K extends keyof T>(
-  data: T,
-  keys: K | K[]
-): { [Proprty in keyof T]?: T[Proprty] } {
+function pickObjectCase<
+  T extends Record<string, string | number | string[]>,
+  K extends keyof T
+>(data: T, keys: K[]): { [Proprty in keyof T]?: T[Proprty] } {
   if (Object.keys(data).length === 0) {
     return {} as { [Proprty in keyof T]?: T[Proprty] };
   }
 
   return Object.entries(data).reduce((acc, [key, val]) => {
-    if (keys.includes) {
-      acc[key] = val;
+    if (keys.includes(key as K)) {
+      acc[key as K] = val as T[K];
     }
     return acc;
   }, {} as { [Proprty in keyof T]?: T[Proprty] });
