@@ -1,6 +1,6 @@
 declare module 'sort-by' {
      type User = {
-          id?: string;
+          id?: number;
           name?: string;
           age?: string;
           email?: {

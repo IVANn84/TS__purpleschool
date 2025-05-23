@@ -1,6 +1,15 @@
 import { sortBy } from 'sort-by';
 
-const users = [
+type User = {
+     id?: number;
+     name?: string;
+     age?: string;
+     email?: {
+          primary: string;
+     };
+};
+
+const users: User[] = [
      {
           id: 7,
           name: 'Foo',
