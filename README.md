@@ -23,7 +23,6 @@
 🎓 Я студент курса **[TypeScript](https://app.purpleschool.ru/courses/5/sections/16/lessons/986)**  на платформе [Purple School](https://app.purpleschool.ru) 
 📅 Обучаюсь с **апреля 2025** 
 
-
 ---
 
 ## 🛠 Технологии
@@ -39,9 +38,8 @@
 
 Если у вас есть вопросы или хотите связаться со мной:
 
-- 📧 Email: [ваш email]
-- 💼 LinkedIn: [ваш профиль LinkedIn]
-- 🐙 GitHub: [@ваш_никнейм](https://github.com/ваш_никнейм) 
+- 📧 Email: [ivan.tihii1984@mail.com]
+- 🐙 GitHub: [@IVANn84](https://github.com/ваш_никнейм) 
 
 ---
 
