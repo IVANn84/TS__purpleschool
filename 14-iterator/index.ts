@@ -1,9 +1,6 @@
-// Элемент коллекции (Task)
 class Task {
      constructor(public id: number, public date: Date, public title: string) {}
 }
-
-// Коллекция задач (TaskList)
 class TaskList {
      private tasks: Task[] = [];
 
@@ -19,43 +16,40 @@ class TaskList {
           return this.tasks.length;
      }
 
-     // Получаем итератор по приоритету
-     // priorityIterator(): PriorityTaskIterator {
-     //      return new PriorityTaskIterator(this);
-     // }
+     priorityIterator(
+          key: keyof Task,
+          direction: 'incr' | 'decr'
+     ): PriorityTaskIterator {
+          return new PriorityTaskIterator(this, key, direction);
+     }
 }
-
-const firstTask = new Task(3, new Date('2025-04-12'), 'first task');
-const secondTask = new Task(4, new Date('2025-04-13'), 'second task');
-const threeTask = new Task(5, new Date('2025-04-14'), 'three task');
-const fourTask = new Task(6, new Date('2025-04-15'), 'four task');
-
-const tasks_ = new TaskList();
-
-tasks_.add(firstTask);
-tasks_.add(secondTask);
-tasks_.add(threeTask);
-tasks_.add(fourTask);
-console.log(tasks_);
-
-// Интерфейс итератора
 interface IIterator<T> {
      current(): T | null;
      next(): T | null;
      prev(): T | null;
      index(): number;
 }
-
-// // Итератор по приоритету
 class PriorityTaskIterator implements IIterator<Task> {
      private sortedTasks: Task[];
      private position: number = 0;
+     private direction: 'incr' | 'decr';
 
-     constructor(taskList: TaskList) {
-          // Сортируем задачи по приоритету
-          this.sortedTasks = [...taskList.getAll()].sort(
-               (a, b) => b.priority - a.priority
-          );
+     constructor(
+          taskList: TaskList,
+          key: keyof Task,
+          direction: typeof this.direction
+     ) {
+          this.direction = direction;
+          const sorted = [...taskList.getAll()].sort((a, b) => {
+               if (a[key] > b[key]) return 1;
+               if (a[key] < b[key]) return -1;
+               return 0;
+          });
+          if (this.direction === 'incr') {
+               this.sortedTasks = sorted;
+          } else {
+               this.sortedTasks = sorted.reverse();
+          }
      }
 
      current(): Task | null {
@@ -64,7 +58,7 @@ class PriorityTaskIterator implements IIterator<Task> {
 
      next(): Task | null {
           if (this.position < this.sortedTasks.length - 1) {
-               this.position++;
+               this.position += 1;
                return this.current();
           }
           return null;
@@ -72,7 +66,7 @@ class PriorityTaskIterator implements IIterator<Task> {
 
      prev(): Task | null {
           if (this.position > 0) {
-               this.position--;
+               this.position -= 1;
                return this.current();
           }
           return null;
@@ -83,16 +77,18 @@ class PriorityTaskIterator implements IIterator<Task> {
      }
 }
 
-// // === Пример использования ===
-// const tasks = new TaskList();
-// tasks.add(new Task('Починить баги', 2));
-// tasks.add(new Task('Реализовать новую фичу', 5));
-// tasks.add(new Task('Обновить документацию', 1));
+// const threeTask = new Task(5, new Date('2025-04-14'), 'c');
+// const firstTask = new Task(3, new Date('2025-04-12'), 'a');
+// const fourTask = new Task(6, new Date('2025-04-15'), 'd');
+// const secondTask = new Task(4, new Date('2025-04-13'), 'b');
 
-// const iterator = tasks.priorityIterator();
+// const tasks_ = new TaskList();
 
-// console.log(iterator.current()); // Task: Реализовать новую фичу
-// console.log(iterator.next()); // Task: Починить баги
-// console.log(iterator.next()); // Task: Обновить документацию
-// console.log(iterator.prev()); // Task: Починить баги
-// console.log(iterator.index()); // 1
+// tasks_.add(firstTask);
+// tasks_.add(secondTask);
+// tasks_.add(threeTask);
+// tasks_.add(fourTask);
+// console.log(tasks_);
+
+// const priorityID = new PriorityTaskIterator(tasks_, 'id', 'incr');
+// console.log(priorityID);
