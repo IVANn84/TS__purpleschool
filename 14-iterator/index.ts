@@ -91,4 +91,5 @@ class PriorityTaskIterator implements IIterator<Task> {
 // console.log(tasks_);
 
 // const priorityID = new PriorityTaskIterator(tasks_, 'id', 'incr');
+// const priorityID = new PriorityTaskIterator(tasks_, 'id', 'decr');
 // console.log(priorityID);
