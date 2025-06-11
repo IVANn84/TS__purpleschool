@@ -38,8 +38,8 @@
 
 Если у вас есть вопросы или хотите связаться со мной:
 
-- 📧 Email: [ivan.tihii1984@mail.com] 
-- 🐙 GitHub: [@IVANn84](https://github.com/ваш_никнейм) 
+- 📧 Email: [ivan.tihii1984@mail.com](mailto:ivan.tihii1984@mail.com)
+- 🐙 GitHub: [@IVANn84](https://github.com/IVANn84) 
 
 ---
 
